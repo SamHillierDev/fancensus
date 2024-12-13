@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <footer
     class="mt-10 bg-[#1A224E] py-4 text-center text-white dark:bg-gray-900"

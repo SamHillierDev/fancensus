@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+import { ref } from "vue";
 import { onMounted } from "vue";
 import { useFetchData } from "../utils/fetchData";
 import GameMentionsChart from "../components/GamesBarChart.vue";
