@@ -6,7 +6,7 @@ import Footer from "./components/Footer.vue";
 <template>
   <div
     :class="[
-      'min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 text-gray-900',
+      'min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 pt-14 text-gray-900',
       'dark:from-gray-800 dark:to-gray-900 dark:text-gray-100',
     ]"
   >
