@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { defineProps, defineEmits } from "vue";
 import FancensusLogo from "./FancensusLogo.vue";
+import { SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
 
-const darkMode = ref(false);
+const props = defineProps({
+  darkMode: Boolean,
+});
 
-const toggleDarkMode = () => {
-  darkMode.value = !darkMode.value;
-  if (darkMode.value) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-};
+const emit = defineEmits(["toggleDarkMode"]);
 </script>
 
 <template>
@@ -20,10 +16,11 @@ const toggleDarkMode = () => {
   >
     <FancensusLogo />
     <button
-      class="cursor-pointer rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#1A224E] shadow-md transition dark:bg-gray-700 dark:text-white"
-      @click="toggleDarkMode"
+      class="cursor-pointer rounded-full bg-white p-2 text-sm font-semibold text-[#1A224E] shadow-md transition dark:bg-gray-700 dark:text-white"
+      @click="$emit('toggleDarkMode')"
+      :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
     >
-      {{ darkMode.value ? "Light Mode" : "Dark Mode" }}
+      <component :is="darkMode ? MoonIcon : SunIcon" class="h-6 w-6" />
     </button>
   </header>
 </template>
