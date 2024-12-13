@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { sortData } from "../utils/sortData";
+import { countryCodeToName } from "../utils/constants";
 import BarChart from "./BarChart.vue";
 
 interface DataItem {
@@ -18,7 +19,9 @@ const sortedData = computed(() => {
     (item) => item.countrycode,
     props.sortOrder || "desc",
   );
-  const top10Labels = fullData.labels.slice(0, 10);
+  const top10Labels = fullData.labels
+    .slice(0, 10)
+    .map((code) => countryCodeToName[code] || code);
   const top10Dataset = fullData.dataset.slice(0, 10);
 
   return {
