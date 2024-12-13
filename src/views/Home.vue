@@ -5,7 +5,7 @@ import GameMentionsChart from "../components/GamesBarChart.vue";
 import CountriesChart from "../components/CountriesBarChart.vue";
 import GamesTable from "../components/GamesTable.vue";
 
-const { data, fetchData } = useFetchData(
+const { data, loading, fetchData } = useFetchData(
   "https://fancensus.com/test/dataset1.json",
 );
 
@@ -18,13 +18,23 @@ onMounted(fetchData);
       <section
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
-        <GameMentionsChart :data="data" />
+        <div v-if="loading" class="flex h-64 items-center justify-center">
+          <div
+            class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
+          ></div>
+        </div>
+        <GameMentionsChart v-else :data="data" />
       </section>
 
       <section
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
-        <CountriesChart :data="data" />
+        <div v-if="loading" class="flex h-64 items-center justify-center">
+          <div
+            class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
+          ></div>
+        </div>
+        <CountriesChart v-else :data="data" />
       </section>
     </div>
 
@@ -32,7 +42,12 @@ onMounted(fetchData);
       <section
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
-        <GamesTable :data="data" />
+        <div v-if="loading" class="flex h-64 items-center justify-center">
+          <div
+            class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
+          ></div>
+        </div>
+        <GamesTable v-else :data="data" />
       </section>
     </div>
   </main>

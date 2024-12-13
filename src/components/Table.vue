@@ -6,7 +6,7 @@ interface TableColumn {
 
 defineProps<{
   columns: TableColumn[];
-  rows: Record<string, any>[];
+  rows: Record<string, any>[] | null;
 }>();
 </script>
 
@@ -26,22 +26,34 @@ defineProps<{
       </tr>
     </thead>
     <tbody class="bg-blue-50 dark:bg-gray-900">
-      <tr
-        v-for="(row, rowIndex) in rows"
-        :key="rowIndex"
-        :class="[
-          rowIndex % 2 === 0 ? 'bg-blue-100 dark:bg-gray-800' : '',
-          'cursor-pointer hover:bg-blue-200 dark:hover:bg-gray-700',
-        ]"
-      >
-        <td
-          v-for="column in columns"
-          :key="column.key"
-          class="border-b border-blue-200 px-4 py-2 dark:border-gray-700"
+      <template v-if="rows && rows.length > 0">
+        <tr
+          v-for="(row, rowIndex) in rows"
+          :key="rowIndex"
+          :class="[
+            rowIndex % 2 === 0 ? 'bg-blue-100 dark:bg-gray-800' : '',
+            'cursor-pointer hover:bg-blue-200 dark:hover:bg-gray-700',
+          ]"
         >
-          {{ row[column.key] }}
-        </td>
-      </tr>
+          <td
+            v-for="column in columns"
+            :key="column.key"
+            class="border-b border-blue-200 px-4 py-2 dark:border-gray-700"
+          >
+            {{ row[column.key] }}
+          </td>
+        </tr>
+      </template>
+      <template v-else>
+        <tr>
+          <td
+            :colspan="columns.length"
+            class="border-b border-blue-200 px-4 py-6 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400"
+          >
+            Unable to fetch data
+          </td>
+        </tr>
+      </template>
     </tbody>
   </table>
 </template>
