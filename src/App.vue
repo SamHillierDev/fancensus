@@ -33,8 +33,8 @@ onMounted(initializeTheme);
 <template>
   <div
     :class="[
-      'min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 pt-14 text-gray-900',
-      'dark:from-gray-800 dark:to-gray-900 dark:text-gray-100',
+      'min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 pt-14 text-gray-900',
+      'dark:from-slate-800 dark:to-slate-900 dark:text-gray-100',
     ]"
   >
     <Header :darkMode="darkMode" @toggleDarkMode="toggleDarkMode" />
