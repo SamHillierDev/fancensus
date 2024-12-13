@@ -3,7 +3,7 @@ import { defineProps, defineEmits } from "vue";
 import FancensusLogo from "./FancensusLogo.vue";
 import { SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
 
-const props = defineProps({
+defineProps({
   darkMode: Boolean,
 });
 
