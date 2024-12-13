@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useFetchData } from "../utils/fetchData";
+import { DATASET_URL } from "../utils/constants";
 import GameMentionsChart from "../components/GamesBarChart.vue";
 import CountriesChart from "../components/CountriesBarChart.vue";
 import GamesTable from "../components/GamesTable.vue";
 
-const { data, loading, fetchData } = useFetchData(
-  "https://fancensus.com/test/dataset1.json",
-);
+const { data, loading, fetchData } = useFetchData(DATASET_URL);
 
 onMounted(fetchData);
 </script>
