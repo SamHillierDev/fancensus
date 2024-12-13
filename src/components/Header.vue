@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { defineProps } from "vue";
 import FancensusLogo from "./FancensusLogo.vue";
 import { SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
 
@@ -16,7 +16,7 @@ const emit = defineEmits(["toggleDarkMode"]);
   >
     <FancensusLogo />
     <button
-      class="cursor-pointer rounded-full bg-white p-2 text-sm font-semibold text-[#1A224E] shadow-md transition hover:bg-slate-300 dark:hover:bg-slate-600 dark:bg-slate-700 dark:text-white"
+      class="cursor-pointer rounded-full bg-blue-50 p-2 text-sm font-semibold text-[#1A224E] shadow-md transition hover:bg-slate-300 dark:hover:bg-slate-600 dark:bg-slate-700 dark:text-white"
       @click="$emit('toggleDarkMode')"
       :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
     >
