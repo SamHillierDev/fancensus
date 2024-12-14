@@ -33,6 +33,8 @@ const columns = [
 <template>
   <div>
     <h2 class="mb-6 text-2xl font-semibold">Most Popular Games</h2>
-    <Table :columns="columns" :rows="groupedByGame" />
+    <div class="max-h-96 overflow-y-auto rounded-md border border-gray-300 p-2">
+      <Table :columns="columns" :rows="groupedByGame" />
+    </div>
   </div>
 </template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
 import FancensusLogo from "./FancensusLogo.vue";
 import { SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
 
