@@ -25,11 +25,11 @@ const sortedData = computed(() => {
 
 <template>
   <div>
-    <h2 class="mb-6 text-2xl font-semibold">Most Popular Games</h2>
+    <h2 class="mb-6 text-2xl font-semibold">Top 10 Games by Mentions</h2>
     <BarChart
       :labels="sortedData.labels"
       :dataset="sortedData.dataset"
-      chartTitle="Most Popular Games"
+      chartTitle="Top 10 Games by Mentions"
       xAxisLabel="Games"
       yAxisLabel="Mentions"
     />

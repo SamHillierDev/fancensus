@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { useFetchData } from "../utils/fetchData";
 import { DATASET_URL } from "../utils/constants";
+import GameSelector from "../components/GameSelector.vue";
+import CountriesBarChart from "../components/CountriesBarChart.vue";
 import GameMentionsChart from "../components/GamesBarChart.vue";
-import CountriesChart from "../components/CountriesBarChart.vue";
 import GamesTable from "../components/GamesTable.vue";
 import CountriesTable from "../components/CountriesTable.vue";
-import GameSelector from "../components/GameSelector.vue";
 
 const { data, loading, fetchData } = useFetchData(DATASET_URL);
+const selectedGame = ref("");
+
+const handleGameSelection = (game: string) => {
+  selectedGame.value = game;
+};
 
 onMounted(fetchData);
 </script>
@@ -24,7 +29,7 @@ onMounted(fetchData);
         ></div>
       </div>
       <div v-else>
-        <GameSelector :games="data" />
+        <GameSelector :games="data" @gameSelected="handleGameSelection" />
       </div>
     </section>
 
@@ -48,7 +53,7 @@ onMounted(fetchData);
             class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
           ></div>
         </div>
-        <CountriesChart v-else :data="data" />
+        <CountriesBarChart v-else :data="data" :selectedGame="selectedGame" />
       </section>
     </div>
 

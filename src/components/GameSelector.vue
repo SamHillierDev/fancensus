@@ -6,6 +6,9 @@ interface Game {
 }
 
 const props = defineProps<{ games: Game[] }>();
+const emits = defineEmits<{
+  (event: "gameSelected", value: string): void;
+}>();
 
 const uniqueSortedGames = computed(() => {
   const uniqueGames = Array.from(
@@ -18,6 +21,7 @@ const selectedGame = ref("");
 
 const handleSelection = (event: Event) => {
   selectedGame.value = (event.target as HTMLSelectElement).value;
+  emits("gameSelected", selectedGame.value);
 };
 </script>
 
