@@ -7,6 +7,7 @@ import CountriesBarChart from "../components/CountriesBarChart.vue";
 import GameMentionsChart from "../components/GamesBarChart.vue";
 import GamesTable from "../components/GamesTable.vue";
 import CountriesTable from "../components/CountriesTable.vue";
+import GamesLineGraph from "../components/GamesLineGraph.vue";
 
 const { data, loading, fetchData } = useFetchData(DATASET_URL);
 const selectedGame = ref("");
@@ -88,6 +89,20 @@ onMounted(fetchData);
           ></div>
         </div>
         <CountriesTable v-else :data="data" :selectedGame="selectedGame" />
+      </section>
+
+      <section
+        v-if="selectedGame"
+        class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
+      >
+        <div v-if="loading" class="flex h-64 items-center justify-center">
+          <div
+            class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
+          ></div>
+        </div>
+        <div v-else>
+          <GamesLineGraph :data="data" :selectedGame="selectedGame" />
+        </div>
       </section>
     </div>
   </main>
