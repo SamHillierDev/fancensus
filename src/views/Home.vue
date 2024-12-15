@@ -87,7 +87,7 @@ onMounted(fetchData);
             class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
           ></div>
         </div>
-        <CountriesTable v-else :data="data" />
+        <CountriesTable v-else :data="data" :selectedGame="selectedGame" />
       </section>
     </div>
   </main>
