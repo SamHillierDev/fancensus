@@ -33,8 +33,16 @@ onMounted(fetchData);
       </div>
     </section>
 
-    <div class="grid grid-cols-1 gap-8 sm:gap-6 lg:grid-cols-2">
+    <div
+      class="grid gap-8 sm:gap-6"
+      :class="
+        selectedGame
+          ? 'grid-cols-1 lg:grid-cols-1'
+          : 'grid-cols-1 sm:grid-cols-2'
+      "
+    >
       <section
+        v-if="!selectedGame"
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
         <div v-if="loading" class="flex h-64 items-center justify-center">
@@ -47,6 +55,7 @@ onMounted(fetchData);
 
       <section
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
+        :class="selectedGame ? 'lg:col-span-2' : ''"
       >
         <div v-if="loading" class="flex h-64 items-center justify-center">
           <div
@@ -59,6 +68,7 @@ onMounted(fetchData);
 
     <div class="space-y-6">
       <section
+        v-if="!selectedGame"
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
         <div v-if="loading" class="flex h-64 items-center justify-center">
