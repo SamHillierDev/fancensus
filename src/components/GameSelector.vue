@@ -37,13 +37,16 @@ const clearSelection = () => {
       <select
         v-model="selectedGame"
         @change="handleSelection"
-        class="w-full rounded border px-2 py-1"
+        class="w-full rounded border bg-blue-50 px-2 py-1 text-gray-900 dark:border-gray-600 dark:bg-slate-700 dark:text-gray-100"
       >
-        <option value="" disabled>Select a game</option>
+        <option value="" disabled class="text-gray-400 dark:text-gray-500">
+          Select a game
+        </option>
         <option
           v-for="game in uniqueSortedGames"
           :key="game.product"
           :value="game.product"
+          class="text-gray-900 dark:text-gray-100"
         >
           {{ game.product }}
         </option>
