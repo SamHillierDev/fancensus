@@ -23,24 +23,38 @@ const handleSelection = (event: Event) => {
   selectedGame.value = (event.target as HTMLSelectElement).value;
   emits("gameSelected", selectedGame.value);
 };
+
+const clearSelection = () => {
+  selectedGame.value = "";
+  emits("gameSelected", "");
+};
 </script>
 
 <template>
   <div>
     <h2 class="mb-4 text-xl font-semibold">Select a Game</h2>
-    <select
-      v-model="selectedGame"
-      @change="handleSelection"
-      class="w-full rounded border px-2 py-1"
-    >
-      <option value="" disabled>Select a game</option>
-      <option
-        v-for="game in uniqueSortedGames"
-        :key="game.product"
-        :value="game.product"
+    <div class="flex items-center gap-2">
+      <select
+        v-model="selectedGame"
+        @change="handleSelection"
+        class="w-full rounded border px-2 py-1"
       >
-        {{ game.product }}
-      </option>
-    </select>
+        <option value="" disabled>Select a game</option>
+        <option
+          v-for="game in uniqueSortedGames"
+          :key="game.product"
+          :value="game.product"
+        >
+          {{ game.product }}
+        </option>
+      </select>
+      <button
+        v-if="selectedGame"
+        @click="clearSelection"
+        class="cursor-pointer rounded bg-[#29377C] px-4 py-1 text-white transition hover:bg-[#4f5a99]"
+      >
+        Clear
+      </button>
+    </div>
   </div>
 </template>
