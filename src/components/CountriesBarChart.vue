@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { sortData } from "../utils/sortData";
+import { useSortData } from "../utils/useSortData";
 import { countryCodeToName } from "../utils/constants";
 import BarChart from "./BarChart.vue";
 
@@ -21,7 +21,7 @@ const filteredData = computed(() => {
 });
 
 const sortedData = computed(() => {
-  const fullData = sortData(
+  const fullData = useSortData(
     filteredData.value,
     (item) => item.countrycode,
     props.sortOrder || "desc",

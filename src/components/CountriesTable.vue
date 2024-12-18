@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import Table from "./Table.vue";
-import { sortData } from "../utils/sortData";
+import { useSortData } from "../utils/useSortData";
 import { countryCodeToName } from "../utils/constants";
 
 interface DataItem {
@@ -20,7 +20,7 @@ const filteredData = computed(() => {
 });
 
 const groupedByCountry = computed(() => {
-  const { labels, dataset } = sortData(
+  const { labels, dataset } = useSortData(
     filteredData.value,
     (item) => item.countrycode,
     "desc",

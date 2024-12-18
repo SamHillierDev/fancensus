@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { useFetchData } from "../utils/fetchData";
+import { ref } from "vue";
+import { useFetchData } from "../utils/useFetchData";
 import { DATASET_URL } from "../utils/constants";
 import GameSelector from "../components/GameSelector.vue";
 import CountriesBarChart from "../components/CountriesBarChart.vue";
@@ -9,14 +9,12 @@ import GamesTable from "../components/GamesTable.vue";
 import CountriesTable from "../components/CountriesTable.vue";
 import GamesLineGraph from "../components/GamesLineGraph.vue";
 
-const { data, loading, fetchData } = useFetchData(DATASET_URL);
+const { data, isLoading } = useFetchData(DATASET_URL);
 const selectedGame = ref("");
 
 const handleGameSelection = (game: string) => {
   selectedGame.value = game;
 };
-
-onMounted(fetchData);
 </script>
 
 <template>
@@ -24,7 +22,7 @@ onMounted(fetchData);
     <section
       class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
     >
-      <div v-if="loading" class="flex h-16 items-center justify-center">
+      <div v-if="isLoading" class="flex h-16 items-center justify-center">
         <div
           class="h-8 w-8 animate-spin rounded-full border-t-4 border-solid border-blue-500"
         ></div>
@@ -46,7 +44,7 @@ onMounted(fetchData);
         v-if="!selectedGame"
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
-        <div v-if="loading" class="flex h-64 items-center justify-center">
+        <div v-if="isLoading" class="flex h-64 items-center justify-center">
           <div
             class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
           ></div>
@@ -58,7 +56,7 @@ onMounted(fetchData);
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
         :class="selectedGame ? 'lg:col-span-2' : ''"
       >
-        <div v-if="loading" class="flex h-64 items-center justify-center">
+        <div v-if="isLoading" class="flex h-64 items-center justify-center">
           <div
             class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
           ></div>
@@ -72,7 +70,7 @@ onMounted(fetchData);
         v-if="!selectedGame"
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
-        <div v-if="loading" class="flex h-64 items-center justify-center">
+        <div v-if="isLoading" class="flex h-64 items-center justify-center">
           <div
             class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
           ></div>
@@ -83,7 +81,7 @@ onMounted(fetchData);
       <section
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
-        <div v-if="loading" class="flex h-64 items-center justify-center">
+        <div v-if="isLoading" class="flex h-64 items-center justify-center">
           <div
             class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
           ></div>
@@ -95,7 +93,7 @@ onMounted(fetchData);
         v-if="selectedGame"
         class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
       >
-        <div v-if="loading" class="flex h-64 items-center justify-center">
+        <div v-if="isLoading" class="flex h-64 items-center justify-center">
           <div
             class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
           ></div>

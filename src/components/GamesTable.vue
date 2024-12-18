@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import Table from "./Table.vue";
-import { sortData } from "../utils/sortData";
+import { useSortData } from "../utils/useSortData";
 
 interface DataItem {
   product: string;
@@ -10,7 +10,7 @@ interface DataItem {
 const props = defineProps<{ data: DataItem[] }>();
 
 const groupedByGame = computed(() => {
-  const { labels, dataset } = sortData(
+  const { labels, dataset } = useSortData(
     props.data,
     (item) => item.product,
     "desc",

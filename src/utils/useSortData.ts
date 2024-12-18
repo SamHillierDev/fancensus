@@ -3,7 +3,7 @@ export interface SortedData {
   dataset: number[];
 }
 
-export function sortData<T>(
+export function useSortData<T>(
   data: T[],
   keyExtractor: (item: T) => string,
   order: "asc" | "desc" = "asc",

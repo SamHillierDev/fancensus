@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import BarChart from "./BarChart.vue";
-import { sortData } from "../utils/sortData";
+import { useSortData } from "../utils/useSortData";
 
 interface DataItem {
   product: string;
@@ -12,7 +12,7 @@ const props = defineProps<{
 }>();
 
 const sortedData = computed(() => {
-  const fullData = sortData(props.data, (item) => item.product, "desc");
+  const fullData = useSortData(props.data, (item) => item.product, "desc");
   const top10Labels = fullData.labels.slice(0, 10);
   const top10Dataset = fullData.dataset.slice(0, 10);
 
