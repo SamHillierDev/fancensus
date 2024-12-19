@@ -8,6 +8,8 @@ defineProps<{
   columns: TableColumn[];
   rows: Record<string, any>[] | null;
 }>();
+
+defineEmits(["row-click"]);
 </script>
 
 <template>
@@ -30,6 +32,7 @@ defineProps<{
         <tr
           v-for="(row, rowIndex) in rows"
           :key="rowIndex"
+          @click="$emit('row-click', row)"
           :class="[
             rowIndex % 2 === 0 ? 'bg-blue-100 dark:bg-gray-800' : '',
             'cursor-pointer hover:bg-blue-200 dark:hover:bg-gray-700',

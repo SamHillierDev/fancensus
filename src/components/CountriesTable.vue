@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 import Table from "./AppTable.vue";
 import { useSortData } from "../utils/useSortData";
 import { countryCodeToName } from "../utils/constants";
@@ -9,9 +10,9 @@ interface DataItem {
   product: string;
 }
 
-const props = defineProps<{ 
-  data: DataItem[]; 
-  selectedGame: string; 
+const props = defineProps<{
+  data: DataItem[];
+  selectedGame: string;
 }>();
 
 const filteredData = computed(() => {
@@ -38,6 +39,7 @@ const groupedByCountry = computed(() => {
     return {
       country: `${emoji} ${countryCodeToName[countryCode] || countryCode}`,
       count,
+      code: countryCode,
     };
   });
 });
@@ -46,6 +48,23 @@ const countryColumns = [
   { header: "Country", key: "country" },
   { header: "Mentions", key: "count" },
 ];
+
+const router = useRouter();
+
+const navigateToArticle = (row: { code: string }) => {
+  const countryCode = row.code.toLowerCase();
+  const gameName = props.selectedGame.toLowerCase();
+
+  if (countryCode) {
+    router.push({
+      name: "articles",
+      params: { countrycode: countryCode },
+      hash: gameName ? `#${gameName}` : undefined,
+    });
+  } else {
+    console.error("Country code is missing.");
+  }
+};
 </script>
 
 <template>
@@ -54,7 +73,11 @@ const countryColumns = [
       Most Mentions by Country{{ selectedGame ? ` - ${selectedGame}` : "" }}
     </h2>
     <div class="max-h-96 overflow-y-auto rounded-md border border-gray-300 p-2">
-      <Table :columns="countryColumns" :rows="groupedByCountry" />
+      <Table
+        :columns="countryColumns"
+        :rows="groupedByCountry"
+        @row-click="navigateToArticle"
+      />
     </div>
   </div>
 </template>

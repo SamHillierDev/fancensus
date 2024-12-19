@@ -23,7 +23,7 @@ const handleGameSelection = (game: string) => {
       class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
     >
       <div v-if="isLoading">
-        <AppLoading/>
+        <AppLoading />
       </div>
       <div v-else>
         <GameSelector :games="data" @gameSelected="handleGameSelection" />

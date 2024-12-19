@@ -15,7 +15,7 @@ const emit = defineEmits(["toggleDarkMode"]);
   >
     <FancensusLogo />
     <button
-      class="cursor-pointer rounded-full bg-blue-50 p-2 text-sm font-semibold text-[#1A224E] shadow-md transition hover:bg-slate-300 dark:hover:bg-slate-600 dark:bg-slate-700 dark:text-white"
+      class="cursor-pointer rounded-full bg-blue-50 p-2 text-sm font-semibold text-[#1A224E] shadow-md transition hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
       @click="$emit('toggleDarkMode')"
       :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
     >
