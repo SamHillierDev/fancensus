@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useFetchData } from "../utils/useFetchData";
-import { DATASET_URL } from "../utils/constants";
 import GameSelector from "../components/GameSelector.vue";
 import CountriesBarChart from "../components/CountriesBarChart.vue";
 import GameMentionsChart from "../components/GamesBarChart.vue";
@@ -9,7 +8,7 @@ import GamesTable from "../components/GamesTable.vue";
 import CountriesTable from "../components/CountriesTable.vue";
 import GamesLineGraph from "../components/GamesLineGraph.vue";
 
-const { data, isLoading } = useFetchData(DATASET_URL);
+const { data, isLoading } = useFetchData();
 const selectedGame = ref("");
 
 const handleGameSelection = (game: string) => {
