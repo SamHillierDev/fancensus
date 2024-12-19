@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import Table from "./Table.vue";
+import Table from "./AppTable.vue";
 import { useSortData } from "../utils/useSortData";
 
 interface DataItem {

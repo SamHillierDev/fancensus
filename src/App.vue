@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+import AppHeader from "./components/AppHeader.vue";
+import AppFooter from "./components/AppFooter.vue";
 
 const darkMode = ref(false);
 
@@ -37,10 +37,10 @@ onMounted(initializeTheme);
       'dark:from-slate-700 dark:to-slate-800 dark:text-gray-100',
     ]"
   >
-    <Header :darkMode="darkMode" @toggleDarkMode="toggleDarkMode" />
+    <AppHeader :darkMode="darkMode" @toggleDarkMode="toggleDarkMode" />
 
     <router-view />
 
-    <Footer />
+    <AppFooter />
   </div>
 </template>

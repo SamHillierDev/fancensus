@@ -7,6 +7,7 @@ import GameMentionsChart from "../components/GamesBarChart.vue";
 import GamesTable from "../components/GamesTable.vue";
 import CountriesTable from "../components/CountriesTable.vue";
 import GamesLineChart from "../components/GamesLineChart.vue";
+import AppLoading from "../components/AppLoading.vue";
 
 const { data, isLoading } = useFetchData();
 const selectedGame = ref("");
@@ -21,10 +22,8 @@ const handleGameSelection = (game: string) => {
     <section
       class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
     >
-      <div v-if="isLoading" class="flex h-16 items-center justify-center">
-        <div
-          class="h-8 w-8 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-        ></div>
+      <div v-if="isLoading">
+        <AppLoading/>
       </div>
       <div v-else>
         <GameSelector :games="data" @gameSelected="handleGameSelection" />
