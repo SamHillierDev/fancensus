@@ -6,7 +6,7 @@ import CountriesBarChart from "../components/CountriesBarChart.vue";
 import GameMentionsChart from "../components/GamesBarChart.vue";
 import GamesTable from "../components/GamesTable.vue";
 import CountriesTable from "../components/CountriesTable.vue";
-import GamesLineGraph from "../components/GamesLineGraph.vue";
+import GamesLineChart from "../components/GamesLineChart.vue";
 
 const { data, isLoading } = useFetchData();
 const selectedGame = ref("");
@@ -98,7 +98,7 @@ const handleGameSelection = (game: string) => {
           ></div>
         </div>
         <div v-else>
-          <GamesLineGraph :data="data" :selectedGame="selectedGame" />
+          <GamesLineChart :data="data" :selectedGame="selectedGame" />
         </div>
       </section>
     </div>

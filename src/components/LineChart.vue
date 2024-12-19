@@ -1,23 +1,27 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Bar } from "vue-chartjs";
+import { Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
-  BarElement,
-  BarController,
-  CategoryScale,
+  LineController,
+  LineElement,
+  PointElement,
   LinearScale,
   Title,
+  CategoryScale,
   Tooltip,
+  Legend,
 } from "chart.js";
 
 ChartJS.register(
-  BarElement,
-  BarController,
-  CategoryScale,
+  LineController,
+  LineElement,
+  PointElement,
   LinearScale,
   Title,
+  CategoryScale,
   Tooltip,
+  Legend,
 );
 
 const props = defineProps<{
@@ -34,9 +38,9 @@ const chartData = computed(() => ({
     {
       label: "Mentions",
       data: props.dataset,
-      backgroundColor: "#29377c",
       borderColor: "#34479b",
-      borderWidth: 1,
+      backgroundColor: "rgba(41, 55, 124, 0.5)",
+      tension: 0.3,
     },
   ],
 }));
@@ -47,7 +51,7 @@ const chartOptions = computed(() => ({
   plugins: {
     title: {
       display: true,
-      text: props.chartTitle || "Bar Chart",
+      text: props.chartTitle || "Line Chart",
     },
   },
   scales: {
@@ -70,6 +74,6 @@ const chartOptions = computed(() => ({
 
 <template>
   <div class="h-100 w-full">
-    <Bar :data="chartData" :options="chartOptions" />
+    <Line :data="chartData" :options="chartOptions" />
   </div>
 </template>
