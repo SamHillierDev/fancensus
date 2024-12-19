@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import LineGraph from "./LineGraph.vue";
+import LineChart from "./LineChart.vue";
 
 interface DataEntry {
   product: string;
@@ -67,7 +67,7 @@ const chartTitle = computed(
 <template>
   <div>
     <h2 class="mb-6 text-2xl font-semibold">{{ chartTitle }}</h2>
-    <LineGraph
+    <LineChart
       :labels="chartData.labels"
       :dataset="chartData.dataset"
       :chartTitle="chartTitle"

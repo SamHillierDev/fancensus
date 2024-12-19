@@ -21,15 +21,17 @@ const sortedData = computed(() => {
     dataset: top10Dataset.reverse(),
   };
 });
+
+const chartTitle = computed(() => "Top 10 Games by Mentions");
 </script>
 
 <template>
   <div>
-    <h2 class="mb-6 text-2xl font-semibold">Top 10 Games by Mentions</h2>
+    <h2 class="mb-6 text-2xl font-semibold">{{ chartTitle }}</h2>
     <BarChart
       :labels="sortedData.labels"
       :dataset="sortedData.dataset"
-      chartTitle="Top 10 Games by Mentions"
+      :chartTitle="chartTitle"
       xAxisLabel="Games"
       yAxisLabel="Mentions"
     />

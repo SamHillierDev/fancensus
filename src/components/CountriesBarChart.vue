@@ -39,7 +39,9 @@ const sortedData = computed(() => {
 
 const chartTitle = computed(
   () =>
-    `Top 10 Countries by Mentions${props.selectedGame ? ` - ${props.selectedGame}` : ""}`,
+    `Top 10 Countries by Mentions${
+      props.selectedGame ? ` - ${props.selectedGame}` : ""
+    }`,
 );
 </script>
 
