@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
 import { formatDate } from "../utils/formatDate";
 
 interface Article {

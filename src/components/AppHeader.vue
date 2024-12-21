@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import FancensusLogo from "./FancensusLogo.vue";
-import { SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
+import ThemeToggleButton from "./ThemeToggleButton.vue";
 
 defineProps({
-  darkMode: Boolean,
+  isDarkMode: Boolean,
 });
 
 const emit = defineEmits(["toggleDarkMode"]);
@@ -14,13 +14,9 @@ const emit = defineEmits(["toggleDarkMode"]);
     class="fixed top-0 right-0 left-0 z-50 flex items-center justify-between bg-[#1A224E] px-6 py-3 text-white shadow-md dark:bg-slate-900"
   >
     <FancensusLogo />
-    <button
-      class="cursor-pointer rounded-full bg-blue-50 p-2 text-sm font-semibold text-[#1A224E] shadow-md transition hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-      @click="$emit('toggleDarkMode')"
-      :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-      data-test-id="dark-mode-toggle"
-    >
-      <component :is="darkMode ? MoonIcon : SunIcon" class="h-6 w-6" />
-    </button>
+    <ThemeToggleButton
+      :isDarkMode="isDarkMode"
+      @toggleDarkMode="$emit('toggleDarkMode')"
+    />
   </header>
 </template>
