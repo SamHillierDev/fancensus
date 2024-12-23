@@ -26,10 +26,19 @@ const props = defineProps<{
   chartTitle?: string;
   xAxisLabel?: string;
   yAxisLabel?: string;
+  maxLabelLength?: number;
 }>();
 
+const truncateLabels = (labels: string[], maxLength: number) => {
+  return labels.map((label) =>
+    label.length > maxLength ? label.slice(0, maxLength) + "..." : label,
+  );
+};
+
+const maxLabelLength = props.maxLabelLength || 10;
+
 const chartData = computed(() => ({
-  labels: props.labels,
+  labels: truncateLabels(props.labels, maxLabelLength),
   datasets: [
     {
       label: "Mentions",
