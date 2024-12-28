@@ -14,12 +14,12 @@ Make sure you have Node and NPM installed:
 
 ```bash
 node -v
-# v22.11.0
+# v22.12.0
 ```
 
 ```bash
 npm -v
-# 10.9.0
+# 11.0.0
 ```
 
 ## Installation
