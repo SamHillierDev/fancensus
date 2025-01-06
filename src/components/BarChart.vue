@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, watch, computed } from "vue";
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -23,6 +23,7 @@ ChartJS.register(
 const props = defineProps<{
   labels: string[];
   dataset: number[];
+  isDarkMode: boolean;
   chartTitle?: string;
   xAxisLabel?: string;
   yAxisLabel?: string;
@@ -35,7 +36,16 @@ const truncateLabels = (labels: string[], maxLength: number) => {
   );
 };
 
-const maxLabelLength = props.maxLabelLength || 10;
+const chartKey = ref(0);
+
+watch(
+  () => props.isDarkMode,
+  () => {
+    chartKey.value++;
+  },
+);
+
+const maxLabelLength = props.maxLabelLength ?? 10;
 
 const chartData = computed(() => ({
   labels: truncateLabels(props.labels, maxLabelLength),
@@ -56,20 +66,37 @@ const chartOptions = computed(() => ({
   plugins: {
     title: {
       display: true,
-      text: props.chartTitle || "Bar Chart",
+      text: props.chartTitle ?? "Bar Chart",
+      color: props.isDarkMode ? "#ffffff" : "#000000",
+    },
+    tooltip: {
+      bodyColor: props.isDarkMode ? "#ffffff" : "#000000",
+    },
+    legend: {
+      labels: {
+        color: props.isDarkMode ? "#ffffff" : "#000000",
+      },
     },
   },
   scales: {
     x: {
       title: {
         display: true,
-        text: props.xAxisLabel || "X-Axis",
+        text: props.xAxisLabel ?? "X-Axis",
+        color: props.isDarkMode ? "#ffffff" : "#000000",
+      },
+      ticks: {
+        color: props.isDarkMode ? "#ffffff" : "#000000",
       },
     },
     y: {
       title: {
         display: true,
-        text: props.yAxisLabel || "Y-Axis",
+        text: props.yAxisLabel ?? "Y-Axis",
+        color: props.isDarkMode ? "#ffffff" : "#000000",
+      },
+      ticks: {
+        color: props.isDarkMode ? "#ffffff" : "#000000",
       },
       beginAtZero: true,
     },
@@ -79,6 +106,6 @@ const chartOptions = computed(() => ({
 
 <template>
   <div class="h-100 w-full">
-    <Bar :data="chartData" :options="chartOptions" />
+    <Bar :key="chartKey" :data="chartData" :options="chartOptions" />
   </div>
 </template>

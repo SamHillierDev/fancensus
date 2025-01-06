@@ -94,11 +94,9 @@ const clearProductFilter = () => {
 <template>
   <main class="mx-auto max-w-6xl space-y-8 p-6">
     <section
-      class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-900 dark:text-gray-100 dark:shadow-inner"
+      class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
     >
-      <h2
-        class="mb-6 flex flex-wrap items-center gap-2 text-2xl font-semibold"
-      >
+      <h2 class="mb-6 flex flex-wrap items-center gap-2 text-2xl font-semibold">
         Articles for {{ countryName }}
         <span v-if="productFilter"> - {{ productFilter }} </span>
         <button

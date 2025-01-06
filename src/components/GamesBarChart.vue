@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watch, ref } from "vue";
 import BarChart from "./BarChart.vue";
 import { useSortData } from "../utils/useSortData";
 
@@ -9,6 +9,7 @@ interface DataItem {
 
 const props = defineProps<{
   data: DataItem[];
+  isDarkMode: boolean;
 }>();
 
 const sortedData = computed(() => {
@@ -32,6 +33,7 @@ const chartTitle = computed(() => "Top 10 Games by Mentions");
       :labels="sortedData.labels"
       :dataset="sortedData.dataset"
       :chartTitle="chartTitle"
+      :isDarkMode="props.isDarkMode"
       xAxisLabel="Games"
       yAxisLabel="Mentions"
     />

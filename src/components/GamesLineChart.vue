@@ -10,6 +10,7 @@ interface DataEntry {
 const props = defineProps<{
   data: DataEntry[];
   selectedGame: string;
+  isDarkMode: boolean;
 }>();
 
 const monthsOf2024 = [
@@ -71,6 +72,7 @@ const chartTitle = computed(
       :labels="chartData.labels"
       :dataset="chartData.dataset"
       :chartTitle="chartTitle"
+      :isDarkMode="props.isDarkMode"
       xAxisLabel="Month"
       yAxisLabel="Mentions"
     />

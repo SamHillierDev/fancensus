@@ -13,6 +13,7 @@ const props = defineProps<{
   data: DataItem[];
   selectedGame: string;
   sortOrder?: "asc" | "desc";
+  isDarkMode: boolean;
 }>();
 
 const filteredData = computed(() => {
@@ -37,12 +38,11 @@ const sortedData = computed(() => {
   };
 });
 
-const chartTitle = computed(
-  () =>
-    `Top 10 Countries by Mentions${
-      props.selectedGame ? ` - ${props.selectedGame}` : ""
-    }`,
-);
+const chartTitle = computed(() => {
+  return `Top 10 Countries by Mentions${
+    props.selectedGame ? ` - ${props.selectedGame}` : ""
+  }`;
+});
 </script>
 
 <template>
@@ -54,6 +54,7 @@ const chartTitle = computed(
       :chartTitle="chartTitle"
       xAxisLabel="Countries"
       yAxisLabel="Mentions"
+      :isDarkMode="props.isDarkMode"
     />
   </div>
 </template>

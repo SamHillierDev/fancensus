@@ -14,9 +14,7 @@ const { isDarkMode, toggleDarkMode } = useDarkMode();
     ]"
   >
     <AppHeader :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode" />
-
-    <router-view />
-
+    <router-view :isDarkMode="isDarkMode" />
     <AppFooter />
   </div>
 </template>

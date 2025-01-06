@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watch, ref } from "vue";
 import { Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -30,7 +30,16 @@ const props = defineProps<{
   chartTitle?: string;
   xAxisLabel?: string;
   yAxisLabel?: string;
+  isDarkMode: boolean;
 }>();
+
+const chartKey = ref(0);
+watch(
+  () => props.isDarkMode,
+  () => {
+    chartKey.value++;
+  },
+);
 
 const chartData = computed(() => ({
   labels: props.labels,
@@ -52,6 +61,15 @@ const chartOptions = computed(() => ({
     title: {
       display: true,
       text: props.chartTitle || "Line Chart",
+      color: props.isDarkMode ? "#ffffff" : "#000000",
+    },
+    tooltip: {
+      bodyColor: props.isDarkMode ? "#ffffff" : "#000000",
+    },
+    legend: {
+      labels: {
+        color: props.isDarkMode ? "#ffffff" : "#000000",
+      },
     },
   },
   scales: {
@@ -59,12 +77,20 @@ const chartOptions = computed(() => ({
       title: {
         display: true,
         text: props.xAxisLabel || "X-Axis",
+        color: props.isDarkMode ? "#ffffff" : "#000000",
+      },
+      ticks: {
+        color: props.isDarkMode ? "#ffffff" : "#000000",
       },
     },
     y: {
       title: {
         display: true,
         text: props.yAxisLabel || "Y-Axis",
+        color: props.isDarkMode ? "#ffffff" : "#000000",
+      },
+      ticks: {
+        color: props.isDarkMode ? "#ffffff" : "#000000",
       },
       beginAtZero: true,
     },
@@ -74,6 +100,6 @@ const chartOptions = computed(() => ({
 
 <template>
   <div class="h-100 w-full">
-    <Line :data="chartData" :options="chartOptions" />
+    <Line :key="chartKey" :data="chartData" :options="chartOptions" />
   </div>
 </template>
