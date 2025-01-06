@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex min-h-screen flex-col items-center justify-center bg-slate-100 text-gray-800 dark:bg-slate-900 dark:text-gray-100"
+    class="flex flex-col items-center justify-center bg-slate-100 p-50 text-gray-800 dark:bg-slate-800 dark:text-gray-100"
   >
     <h1 class="mb-4 text-4xl font-bold">404 - Page Not Found</h1>
     <router-link

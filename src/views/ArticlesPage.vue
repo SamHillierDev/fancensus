@@ -3,6 +3,7 @@ import { ref, onMounted, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useFetchData } from "../utils/useFetchData";
 import { countryCodeToName } from "../utils/constants";
+import AppContainer from "../components/AppContainer.vue";
 import AppLoading from "../components/AppLoading.vue";
 import ArticleCard from "../components/ArticleCard.vue";
 
@@ -93,40 +94,43 @@ const clearProductFilter = () => {
 
 <template>
   <main class="mx-auto max-w-6xl space-y-8 p-6">
-    <section
-      class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-    >
-      <h2 class="mb-6 flex flex-wrap items-center gap-2 text-2xl font-semibold">
-        Articles for {{ countryName }}
-        <span v-if="productFilter"> - {{ productFilter }} </span>
-        <button
-          v-if="productFilter"
-          class="cursor-pointer rounded bg-[#29377C] px-2 py-1 text-sm text-white transition hover:bg-[#4f5a99]"
-          @click="clearProductFilter"
-        >
-          Clear
-        </button>
-      </h2>
-      <div v-if="isLoading" class="flex h-64 items-center justify-center">
-        <AppLoading />
-      </div>
-      <div
-        v-else-if="articles.length > 0"
-        class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-      >
-        <ArticleCard
-          v-for="(article, index) in articles"
-          :key="index"
-          :article="article"
-          :onProductClick="updateProductHash"
-        />
-      </div>
-      <div v-else class="text-center">
-        <p class="text-lg text-gray-600 dark:text-gray-400">
-          No articles available for this country
-          <span v-if="productFilter"> and product</span>.
-        </p>
-      </div>
-    </section>
+    <AppContainer :isLoading="isLoading">
+      <template #default>
+        <section>
+          <h2
+            class="mb-6 flex flex-wrap items-center gap-2 text-2xl font-semibold"
+          >
+            Articles for {{ countryName }}
+            <span v-if="productFilter"> - {{ productFilter }}</span>
+            <button
+              v-if="productFilter"
+              class="cursor-pointer rounded bg-[#29377C] px-2 py-1 text-sm text-white transition hover:bg-[#4f5a99]"
+              @click="clearProductFilter"
+            >
+              Clear
+            </button>
+          </h2>
+
+          <div
+            v-if="articles.length > 0"
+            class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <ArticleCard
+              v-for="(article, index) in articles"
+              :key="index"
+              :article="article"
+              :onProductClick="updateProductHash"
+            />
+          </div>
+
+          <div v-else class="text-center">
+            <p class="text-lg text-gray-600 dark:text-gray-400">
+              No articles available for this country
+              <span v-if="productFilter"> and product</span>.
+            </p>
+          </div>
+        </section>
+      </template>
+    </AppContainer>
   </main>
 </template>

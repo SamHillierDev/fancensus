@@ -2,6 +2,8 @@
 import { ref, computed } from "vue";
 import type { Ref } from "vue";
 import { useFetchData } from "../utils/useFetchData";
+import AppContainer from "../components/AppContainer.vue";
+import AppLoading from "../components/AppLoading.vue";
 import GameSelector from "../components/GameSelector.vue";
 import GamesBarChart from "../components/GamesBarChart.vue";
 import CountriesBarChart from "../components/CountriesBarChart.vue";
@@ -9,7 +11,6 @@ import GamesTable from "../components/GamesTable.vue";
 import CountriesTable from "../components/CountriesTable.vue";
 import GamesLineChart from "../components/GamesLineChart.vue";
 import WordCloud from "../components/WordCloud.vue";
-import AppLoading from "../components/AppLoading.vue";
 
 interface DataEntry {
   product: string;
@@ -56,114 +57,55 @@ const selectedGameHeadlines = computed(() => {
 
     <div v-if="selectedGame" class="space-y-6">
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <section
-          class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-        >
-          <div v-if="isLoading" class="flex h-64 items-center justify-center">
-            <div
-              class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-            ></div>
-          </div>
+        <AppContainer :isLoading="isLoading">
           <CountriesBarChart
-            v-else
             :data="data"
             :selectedGame="selectedGame"
             :isDarkMode="isDarkMode"
           />
-        </section>
+        </AppContainer>
 
-        <section
-          class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-        >
-          <div v-if="isLoading" class="flex h-64 items-center justify-center">
-            <div
-              class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-            ></div>
-          </div>
-          <CountriesTable v-else :data="data" :selectedGame="selectedGame" />
-        </section>
+        <AppContainer :isLoading="isLoading">
+          <CountriesTable :data="data" :selectedGame="selectedGame" />
+        </AppContainer>
       </div>
 
-      <section
-        class="rounded-2xl bg-blue-50 p-4 shadow-md lg:col-span-2 dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-      >
-        <div v-if="isLoading" class="flex h-64 items-center justify-center">
-          <div
-            class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-          ></div>
-        </div>
+      <AppContainer :isLoading="isLoading">
         <GamesLineChart
-          v-else
           :data="data"
           :selectedGame="selectedGame"
           :isDarkMode="isDarkMode"
         />
-      </section>
+      </AppContainer>
 
-      <section
-        class="rounded-2xl bg-blue-50 p-4 shadow-md lg:col-span-2 dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-      >
-        <div v-if="isLoading" class="flex h-64 items-center justify-center">
-          <div
-            class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-          ></div>
-        </div>
-        <WordCloud v-else :words="selectedGameHeadlines" />
-      </section>
+      <AppContainer :isLoading="isLoading">
+        <WordCloud :words="selectedGameHeadlines" />
+      </AppContainer>
     </div>
 
     <div v-else class="grid grid-cols-1 gap-6 lg:grid-cols-2">
       <div class="space-y-6">
-        <section
-          class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-        >
-          <div v-if="isLoading" class="flex h-64 items-center justify-center">
-            <div
-              class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-            ></div>
-          </div>
-          <GamesBarChart v-else :data="data" :isDarkMode="isDarkMode" />
-        </section>
+        <AppContainer :isLoading="isLoading">
+          <GamesBarChart :data="data" :isDarkMode="isDarkMode" />
+        </AppContainer>
 
-        <section
-          class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-        >
-          <div v-if="isLoading" class="flex h-64 items-center justify-center">
-            <div
-              class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-            ></div>
-          </div>
-          <GamesTable v-else :data="data" />
-        </section>
+        <AppContainer :isLoading="isLoading">
+          <GamesTable :data="data" />
+        </AppContainer>
       </div>
 
       <div class="space-y-6">
-        <section
-          class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-        >
-          <div v-if="isLoading" class="flex h-64 items-center justify-center">
-            <div
-              class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-            ></div>
-          </div>
+        <AppContainer :isLoading="isLoading">
           <CountriesBarChart
-            v-else
             :data="data"
             :selectedGame="selectedGame"
             :isDarkMode="isDarkMode"
           />
-        </section>
+        </AppContainer>
 
-        <section
-          class="rounded-2xl bg-blue-50 p-4 shadow-md dark:bg-slate-800 dark:text-gray-100 dark:shadow-inner dark:shadow-slate-600"
-        >
-          <div v-if="isLoading" class="flex h-64 items-center justify-center">
-            <div
-              class="h-12 w-12 animate-spin rounded-full border-t-4 border-solid border-blue-500"
-            ></div>
-          </div>
-          <CountriesTable v-else :data="data" :selectedGame="selectedGame" />
-        </section>
+        <AppContainer :isLoading="isLoading">
+          <CountriesTable :data="data" :selectedGame="selectedGame" />
+        </AppContainer>
       </div>
     </div>
   </main>
