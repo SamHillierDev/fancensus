@@ -1,4 +1,5 @@
-export const DATASET_URL = "https://fancensus.com/test/dataset1.json";
+export const DATASET = "https://fancensus.com/test/dataset1.json";
+export const DATASET_BACKUP = "/fancensus/data/dataset1.json";
 
 export const countryCodeToName: Record<string, string> = {
   AR: "Argentina",
