@@ -61,7 +61,7 @@ const chartData = computed(() => {
 
 const chartTitle = computed(
   () =>
-    `Mentions in 2024${props.selectedGame ? ` - ${props.selectedGame}` : ""}`,
+    `Popularity in 2024${props.selectedGame ? ` - ${props.selectedGame}` : ""}`,
 );
 </script>
 

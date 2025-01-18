@@ -23,7 +23,7 @@ const sortedData = computed(() => {
   };
 });
 
-const chartTitle = computed(() => "Top 10 Games by Mentions");
+const chartTitle = computed(() => "Top 10 Most Popular Games");
 </script>
 
 <template>
